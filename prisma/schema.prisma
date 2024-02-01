@@ -9,3 +9,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+//Rentacar reservation
+model Reservation {
+
+  id          String      @id @default(uuid())
+  startDate  DateTime
+  endDate    DateTime
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+}
