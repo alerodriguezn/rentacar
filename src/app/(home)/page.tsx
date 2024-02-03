@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { DatePickerWithRange } from '../../components/ui/date-range-picker';
 
-export default function Home() {
+
+export default async function Home() {
+
+
   return (
     <main className="w-3/4">
       <section className="flex items-center justify-center ">
