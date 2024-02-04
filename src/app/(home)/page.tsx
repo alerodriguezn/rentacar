@@ -1,9 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DatePickerWithRange } from '../../components/ui/date-range-picker';
+import { createClient } from "@/lib/supabaseServer";
+import { cookies } from "next/headers";
 
 
 export default async function Home() {
+
+  const cookiesStore = cookies()
+  const supabase = createClient(cookiesStore)
+  const { data } = await supabase.auth.getUser();
+  console.log(data)
 
 
   return (

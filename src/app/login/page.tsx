@@ -1,56 +1,16 @@
-'use client'
-
-import { createBrowserClient } from '@supabase/ssr'
-
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-
-
-export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const router = useRouter()
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
-
-  const handleSignUp = async () => {
-    await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    })
-    router.refresh()
-  }
-
-  const handleSignIn = async () => {
-    await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    router.refresh()
-  }
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.refresh()
-  }
-
+export default function LoginPage() {
   return (
-    <>
-      <input name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-      <input
-        type="password"
-        name="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button onClick={handleSignUp}>Sign up</button>
-      <button onClick={handleSignIn}>Sign in</button>
-      <button onClick={handleSignOut}>Sign out</button>
-    </>
-  )
+    <main className="flex flex-col justify-center items-center min-h-screen w-full">
+      <h2 className="text-3xl font-bold">Login</h2>
+      <form action="/auth/login" method="post" className="flex flex-col">
+        <label htmlFor="email">Email</label>
+        <input name="email" />
+        <label htmlFor="password">Password</label>
+        <input type="password" name="password" />
+        <button>Sign In</button>
+        <button formAction="/auth/sign-up">Sign Up</button>
+        <button formAction="/auth/logout">Sign Out</button>
+      </form>
+    </main>
+  );
 }

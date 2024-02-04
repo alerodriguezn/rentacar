@@ -28,10 +28,11 @@ export async function POST(request: Request) {
     }
   )
 
-  await supabase.auth.signInWithPassword({
+  const data = await supabase.auth.signInWithPassword({
     email,
     password,
   })
+  console.log(data)
 
   return NextResponse.redirect(requestUrl.origin, {
     status: 301,

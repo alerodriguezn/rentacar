@@ -27,13 +27,15 @@ export async function POST(request: Request) {
     }
   )
 
-  await supabase.auth.signUp({
+  const data = await supabase.auth.signUp({
     email,
     password,
     options: {
       emailRedirectTo: `${requestUrl.origin}/auth/callback`,
     },
   })
+
+  console.log(data)
 
   return NextResponse.redirect(requestUrl.origin, {
     status: 301,
