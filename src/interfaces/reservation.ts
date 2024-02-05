@@ -1,9 +1,10 @@
 
 
 export interface Reservation {
-    id: string,
-    startDate : Date,
-    endDate : Date,
-    createdAt: Date,
-    client: string
+    id: string;
+    startDate: Date;
+    endDate: Date;
+    users: {
+        email: string | null;
+    };
 }

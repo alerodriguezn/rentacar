@@ -37,9 +37,6 @@ export const getAllReservations = async () => {
           }
         }
       },
-      
-  
-
     });
 
 
