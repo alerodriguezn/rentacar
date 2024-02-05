@@ -1,8 +1,17 @@
+import { getAllReservations } from "@/actions";
+import { DataTable } from "./data-table";
 
-export default function AdminPage() {
+export default async function AdminPage() {
+
+ const { ok, data } = await getAllReservations();
+
+ if(!ok){
+    return <div>Something went wrong</div>
+ }
+
   return (
     <div>
-      <h1>Hello Page</h1>
+      <DataTable data={data}/>
     </div> 
   );
 }
