@@ -1,18 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DatePickerWithRange } from '../../components/ui/date-range-picker';
-import { createClient } from "@/lib/supabaseServer";
-import { cookies } from "next/headers";
-
+import { DatePickerWithRange } from "../../components/ui/date-range-picker";
 
 export default async function Home() {
-
-  const cookiesStore = cookies()
-  const supabase = createClient(cookiesStore)
-  const { data } = await supabase.auth.getUser();
-  console.log(data)
-
-
   return (
     <main className="w-3/4">
       <section className="flex items-center justify-center ">
@@ -42,9 +32,10 @@ export default async function Home() {
         </div>
       </section>
       <section className="flex flex-col items-center justify-center mt-4">
-        <h2 className="text-center text-2xl font-medium mb-4">Consulta la dispobilidad:</h2>
-        <DatePickerWithRange/>
-
+        <h2 className="text-center text-2xl font-medium mb-4">
+          Consulta la dispobilidad:
+        </h2>
+        <DatePickerWithRange />
       </section>
     </main>
   );
