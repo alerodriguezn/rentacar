@@ -1,15 +1,15 @@
 "use server";
 
+import { auth } from "@/auth.config";
 import prisma from "@/lib/prisma";
-import { createClient } from "@/lib/supabaseServer";
-import { cookies } from "next/headers";
+
 
 export const getAllReservations = async () => {
-  const cookiesStore = cookies();
-  const supabase = createClient(cookiesStore);
-  const user = await supabase.auth.getUser();
 
-  if (!user) {
+  const session = await auth()
+
+
+  if (!session?.user.id) {
     return {
       ok: false,
       data: null,
@@ -17,7 +17,7 @@ export const getAllReservations = async () => {
   }
 
   try {
-    const userRole = user.data.user?.role;
+    const userRole = session?.user.role;
 
     if (userRole !== "admin") {
       return {
@@ -31,7 +31,7 @@ export const getAllReservations = async () => {
         id: true,
         startDate: true,
         endDate: true,
-        users: {
+        user: {
           select: {
             email: true,
           }

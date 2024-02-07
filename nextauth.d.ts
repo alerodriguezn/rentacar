@@ -8,6 +8,7 @@ declare module 'next-auth'{
             email: string,
             emailVerified?: boolean,
             image?:string
+            role: string
         } & DefaultSession['user']
     }
 }

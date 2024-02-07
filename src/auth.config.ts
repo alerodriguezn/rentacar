@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Adapter } from 'next-auth/adapters';
 import { PrismaClient } from "@prisma/client"
+import NextAuth from "next-auth";
 
 const prisma = new PrismaClient()
 
@@ -35,3 +36,4 @@ export const authConfig: NextAuthConfig = {
   },
 } satisfies NextAuthConfig;
 
+export const { signIn, signOut, auth, handlers } = NextAuth(authConfig);
