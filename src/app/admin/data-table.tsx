@@ -126,7 +126,11 @@ export const columns: ColumnDef<Reservation>[] = [
   {
     accessorKey: "client",
     header: "Cliente",
-    cell: ({ row }) => <div>{row.getValue("client")}</div>,
+    cell: ({ row }) => {
+      const client = row.original.user.email;
+
+      return <div className="font-medium ">{client}</div>;
+    },
   },
   {
     id: "actions",

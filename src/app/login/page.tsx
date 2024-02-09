@@ -3,17 +3,17 @@ import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
   return (
-    <div className=" flex flex-col min-h-screen pt-32 sm:pt-40">
+    <div className=" flex flex-col min-h-screen pt-32 sm:pt-40 ">
       <h2 className="text-3xl font-bold text-center mb-4 ">Login</h2>
       <form className="flex flex-col">
         <label htmlFor="name" className="font-semibold mb-2">Full Name</label>
-        <input type="text" autoFocus className="bg-slate-200  " />
+        <input type="text" autoFocus className="bg-slate-200 rounded  " />
 
         <label htmlFor="email" className="font-semibold mb-2" >Email</label>
-        <input type="text" className="bg-slate-200 " />
+        <input type="text" className="bg-slate-200 rounded" />
 
         <label htmlFor="password" className="font-semibold mb-2">Password</label>
-        <input type="password" className="bg-slate-200 " />
+        <input type="password" className="bg-slate-200 rounded" />
 
         <Button className="my-2">Crear Cuenta</Button>
 

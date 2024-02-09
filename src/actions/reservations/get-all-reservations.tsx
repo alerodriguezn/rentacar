@@ -9,6 +9,7 @@ export const getAllReservations = async () => {
   const session = await auth()
 
 
+
   if (!session?.user.id) {
     return {
       ok: false,
@@ -18,6 +19,7 @@ export const getAllReservations = async () => {
 
   try {
     const userRole = session?.user.role;
+    console.log(userRole)
 
     if (userRole !== "admin") {
       return {

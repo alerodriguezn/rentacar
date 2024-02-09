@@ -4,7 +4,7 @@ export interface Reservation {
     id: string;
     startDate: Date;
     endDate: Date;
-    users: {
+    user: {
         email: string | null;
     };
 }
