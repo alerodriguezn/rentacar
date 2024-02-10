@@ -199,8 +199,8 @@ export function DataTable({data}: Props) {
     <div className="w-full">
       <div className="flex items-center py-4 h-full">
         <Input
-          placeholder="Filtrar por nombre..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          placeholder="Filtrar por ID..."
+          value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
