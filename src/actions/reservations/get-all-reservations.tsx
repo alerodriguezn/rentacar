@@ -39,6 +39,9 @@ export const getAllReservations = async () => {
           }
         }
       },
+      orderBy:{
+        startDate: 'desc'
+      }
     });
 
 
