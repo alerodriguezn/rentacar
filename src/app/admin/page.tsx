@@ -4,8 +4,6 @@ import { DataTable } from "./data-table";
 export default async function AdminPage() {
   const { ok, data } = await getAllReservations();
 
-  console.log(ok)
-  console.log(data);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -17,6 +15,7 @@ export default async function AdminPage() {
 
   return (
     <div>
+      <h2 className="text-2xl font-bold mt-2">Reservaciones</h2>
       <DataTable data={data} />
     </div>
   );

@@ -8,3 +8,8 @@ export interface Reservation {
         email: string | null;
     };
 }
+
+export interface ReservationDateRange {
+    startDate: Date;
+    endDate: Date
+}
