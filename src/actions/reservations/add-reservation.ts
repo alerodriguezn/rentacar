@@ -1,3 +1,5 @@
+'use server'
+
 import { auth } from "@/auth.config";
 import { ReservationDateRange } from "@/interfaces/reservation";
 import prisma from "@/lib/prisma";
@@ -14,11 +16,22 @@ export const addReservation = async (dateRange: ReservationDateRange) => {
 
   try {
 
-    //TODO: Date Range Validation
+    const { startDate, endDate } = dateRange;
+
+    
+
+    
+
+    // if(!conflictingReservations){
+    //   return {
+    //     ok: false,
+    //     message: 'Reservation dates are not valid'
+    //   }
+    // }
 
     const reservationData = {
-      startDate: dateRange.startDate,
-      endDate: dateRange.endDate,
+      startDate: startDate,
+      endDate: endDate,
       userId: session.user.id,
     };
 
