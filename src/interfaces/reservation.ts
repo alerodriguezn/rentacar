@@ -10,6 +10,6 @@ export interface Reservation {
 }
 
 export interface ReservationDateRange {
-    startDate: Date;
-    endDate: Date
+    from: Date;
+    to: Date
 }

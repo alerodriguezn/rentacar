@@ -5,7 +5,7 @@ import { ReservationDateRange } from "@/interfaces/reservation";
 
 export const validReservation = async (dateRange: ReservationDateRange) => {
   try {
-    const { startDate, endDate } = dateRange;
+    const { from: startDate, to: endDate } = dateRange;
 
     const conflictingReservations = await prisma.reservation.findMany({
       where: {
@@ -32,7 +32,7 @@ export const validReservation = async (dateRange: ReservationDateRange) => {
       },
     });
 
-    if (conflictingReservations) {
+    if (conflictingReservations.length > 0) {
       return {
         ok: false,
         message: "Invalid Reservation",
@@ -45,9 +45,8 @@ export const validReservation = async (dateRange: ReservationDateRange) => {
     };
   } catch (error) {
     return {
-        ok: false,
-        message: error,
-      };
-
+      ok: false,
+      message: error,
+    };
   }
 };
