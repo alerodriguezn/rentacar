@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { addReservation } from "@/actions/reservations/add-reservation";
 
 const FormSchema = z.object({
   startDate: z.date({
@@ -34,7 +35,12 @@ export const RentForm = () => {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {}
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const newReservation = await addReservation({ from: data.startDate, to : data.endDate });
+    if(!newReservation){
+      return
+    }
+  }
 
   return (
     <Form {...form}>

@@ -3,9 +3,11 @@
 import { auth } from "@/auth.config";
 import { ReservationDateRange } from "@/interfaces/reservation";
 import prisma from "@/lib/prisma";
+import { validReservation } from "./valid-reservation";
 
 export const addReservation = async (dateRange: ReservationDateRange) => {
   const session = await auth();
+
 
   if (!session?.user.id) {
     return {
@@ -16,28 +18,28 @@ export const addReservation = async (dateRange: ReservationDateRange) => {
 
   try {
 
-    const { startDate, endDate } = dateRange;
+    const { ok } = await validReservation(dateRange);
 
-    
 
-    
+    if(!ok){
+      return {
+        ok: false,
+        message: "Invalid Range Date",
+      };
+    }
 
-    // if(!conflictingReservations){
-    //   return {
-    //     ok: false,
-    //     message: 'Reservation dates are not valid'
-    //   }
-    // }
+
 
     const reservationData = {
-      startDate: startDate,
-      endDate: endDate,
+      startDate: dateRange.from,
+      endDate: dateRange.to,
       userId: session.user.id,
     };
 
-    const reservation = prisma.reservation.create({
+    const reservation = await prisma.reservation.create({
       data: reservationData,
     });
+
 
     if (!reservation) {
       return {
