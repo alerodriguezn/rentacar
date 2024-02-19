@@ -18,7 +18,6 @@ export default function RentPage() {
           $70 <span className="font-medium">/ día</span>
         </p>
         <RentForm/>
-        
       </div>
     </div>
   );

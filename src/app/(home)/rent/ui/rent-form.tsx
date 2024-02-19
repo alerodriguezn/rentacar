@@ -20,6 +20,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addReservation } from "@/actions/reservations/add-reservation";
+import { useToast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
   startDate: z.date({
@@ -31,6 +32,9 @@ const FormSchema = z.object({
 });
 
 export const RentForm = () => {
+
+  const { toast } = useToast()
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -40,6 +44,10 @@ export const RentForm = () => {
     if(!newReservation){
       return
     }
+    toast({
+      title: "Reservación Confirmada",
+      description: "Ingrese a tus reservas para ver más detalles",
+    })
   }
 
   return (
@@ -125,6 +133,7 @@ export const RentForm = () => {
           )}
         />
         <Button type="submit" className="w-1/2">Reservar</Button>
+
       </form>
     </Form>
   );

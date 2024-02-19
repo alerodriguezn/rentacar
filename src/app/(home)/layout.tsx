@@ -1,4 +1,5 @@
-import { TopMenu } from '../../components/ui/top-menu';
+import { Toaster } from '@/components/ui/toaster';
+import { TopMenu } from '@/components';
 
 export default function LoginLayout({
  children
@@ -8,6 +9,7 @@ export default function LoginLayout({
   return (
     <>
       <TopMenu/>
+      <Toaster />
       {children}
     </>
   );

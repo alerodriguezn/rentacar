@@ -5,9 +5,9 @@ import { ReservationDateRange } from "@/interfaces/reservation";
 import prisma from "@/lib/prisma";
 import { validReservation } from "./valid-reservation";
 
-export const addReservation = async (dateRange: ReservationDateRange) => {
-  const session = await auth();
+export const addReservation = async (dateRange: ReservationDateRange) => { 
 
+  const session = await auth();
 
   if (!session?.user.id) {
     return {
